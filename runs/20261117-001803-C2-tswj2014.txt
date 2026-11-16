@@ -1,0 +1,5 @@
+檢查點 C2 | tswj2014 | 2026-11-17 00:18:03
+結果：通過（錯誤 0、警告 0）
+
+[資訊] 10 張；結構：title → motivation → definition → example → result → method → method → caveat → recap → further
+[資訊] 引用的 Wiki 頁面 6 個：algorithms/branch-and-bound, algorithms/simulated-annealing, concepts/scheduling-basics, concepts/two-agent-scheduling, further-reading/tswj2014, sources/tswj2014

@@ -1,0 +1,7 @@
+檢查點 C3 | josh2016 | 2026-11-17 00:18:03
+結果：通過（錯誤 0、警告 0）
+
+[資訊] 10.1016/j.ejor.2010.05.036 → Crossref：Complexity of single machine scheduling subject to nonnegative inventory constraints / Briskorn, Choi, Lee, Leung, Pinedo / European Journal of Operational Research / 2010（標題相似度 1.00）
+[資訊] 10.1016/j.ijpe.2008.04.009 → Crossref：Maximizing the reward in the relocation problem with generalized due dates / Lin, Liu / International Journal of Production Economics / 2008（標題相似度 1.00）
+[資訊] 10.1080/00207168808803664 → Crossref：Relocation problems are hard / Amir, Kaplan / International Journal of Computer Mathematics / 1988（標題相似度 1.00）
+[資訊] josh2016：3 篇

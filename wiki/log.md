@@ -170,3 +170,9 @@
 - 新增 `scripts/check_style.py`（檢查點 C5）。測試：故意在 `deck.css` 加一個色碼，以及改動 `base.css` 一個顏色但不重新產生 `wiki.html`，兩種都被抓到；之後已還原。測試時產生的幾份失敗紀錄我刪掉了，只留最後一份通過的，這是我的紀錄上的缺口，在這裡補記。
 - 實測：用瀏覽器開啟簡報入口、五份簡報與 `wiki.html`：背景、文字色、字體、引用標籤顏色一致；五份簡報沒有內容超出版面、數學式 0 個錯誤；Wiki 導覽 38 頁。五份簡報 C4 與 `lint_wiki.py` 皆通過。
 - 更正：上一筆說 wiki.html 的顯示效果沒有改變，說得太滿。引用標籤的內距、表格的列距在 wiki.html 與簡報原本略有不同，現在統一用 base.css 的數值，wiki.html 這兩處有極小的差異（不到 1px 級的內距），沒有逐一比對。
+
+## [2026-11-17] build | 新增根目錄首頁 index.html
+
+- 起因：使用者要把成果放上 GitHub Pages；根目錄沒有 `index.html`，只打 repo 網址會是 404。
+- 做法：新增 `index.html`，用 `<meta http-equiv="refresh">` 自動導向 `slides/index.html`，並附兩個手動連結（簡報入口、Wiki）。樣式沿用 `slides/assets/base.css` 與 `deck.css`，沒有新增色碼或字體。`CLAUDE.md` 第 1 節的產出表加了一列。
+- 這是手寫的檔案，不由腳本產生；內容沒有碰 Wiki 或簡報。

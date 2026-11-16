@@ -11,6 +11,7 @@
 | LLM Wiki | `wiki/`（Markdown） | 唯一的內容來源，可用 Obsidian 開啟 |
 | Wiki 瀏覽頁 | `wiki.html` | 由腳本從 `wiki/` 產生，不手動修改 |
 | 教學簡報 | `slides/<代號>.html`，共五份 | 一篇論文一份，由簡報稿產生，不手動修改 |
+| 網站首頁 | `index.html`（根目錄） | 只負責自動導向 `slides/index.html`（GitHub Pages 的網址不必寫路徑也能開）；手寫、不由腳本產生 |
 | 簡報入口 | `slides/index.html` | 列出五份簡報與建議閱讀順序 |
 | 執行與檢查紀錄 | `wiki/log.md`、`runs/` | 每次操作與每次檢查的實際結果 |
 | 繳交說明草稿 | `繳交說明草稿.md` | 流程圖、執行紀錄摘要、反思草稿（由使用者改寫後貼入 Word） |

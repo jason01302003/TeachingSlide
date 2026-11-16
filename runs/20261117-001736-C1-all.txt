@@ -1,0 +1,5 @@
+檢查點 C1 | all | 2026-11-17 00:17:36
+結果：通過（錯誤 0、警告 0）
+
+[資訊] 非來源內容的標記數量：（推論） 8、（自編例子 47、（白話說明） 24、待確認 14
+[資訊] 共 38 頁：algorithm 6、comparison 2、concept 11、external 5、overview 2、query 5、source 5、導覽 2

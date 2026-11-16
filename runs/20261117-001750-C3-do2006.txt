@@ -1,0 +1,7 @@
+檢查點 C3 | do2006 | 2026-11-17 00:17:50
+結果：通過（錯誤 0、警告 0）
+
+[資訊] 10.1080/00207168808803664 → Crossref：Relocation problems are hard / Amir, Kaplan / International Journal of Computer Mathematics / 1988（標題相似度 1.00）
+[資訊] 10.1287/inte.18.6.14 → Crossref：OR Hits the Heights: Relocation Planning at the Orient Heights Housing Project / Kaplan, Berman / Interfaces / 1988（標題相似度 1.00）
+[資訊] 10.1016/j.tcs.2011.04.034 → Crossref：Tight complexity analysis of the relocation problem with arbitrary release dates / Sevastyanov, Lin, Huang / Theoretical Computer Science / 2011（標題相似度 1.00）
+[資訊] do2006：3 篇
