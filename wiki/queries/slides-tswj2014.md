@@ -5,7 +5,7 @@ sources: [TSWJ2014]
 deck: tswj2014
 summary: 兩位客戶共用一台機器，一方要快、一方不能晚；看研究者怎麼用分支定界求最佳解、用模擬退火處理大問題。這是 Wiki 裡與 relocation problem 無關的另一個分支。
 status: 已確認
-updated: 2026-11-16
+updated: 2026-11-17
 ---
 
 # 兩位客戶共用一台機器
@@ -85,7 +85,7 @@ wiki:: [[algorithms/simulated-annealing]]
 kind:: caveat
 wiki:: [[sources/tswj2014]]
 
-這篇原文有幾處前後不一，Wiki 都標為「待確認」：
+這篇原文有幾處前後不一，Wiki 都標為「已確認」的原文註記：
 
 - 實驗參數 $P$ 一處說是 $AG_2$ 的比例、一處說是 $AG_1$ 的比例
 - 內文說誤差都小於 1%，但 Table 5 有一組是 1.05%

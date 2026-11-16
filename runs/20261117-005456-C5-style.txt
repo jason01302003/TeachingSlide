@@ -1,0 +1,4 @@
+檢查點 C5 | style | 2026-11-17 00:54:56
+結果：通過（錯誤 0、警告 0）
+
+[資訊] base.css 43 行；檢查 deck.css、build_viewer.py 的 CSS、wiki.html、6 個簡報頁面

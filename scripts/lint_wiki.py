@@ -13,7 +13,7 @@ from common import (ANY_TAG_RE, PAGE_TYPES, RUNS, SOURCE_IDS, SPECIAL, TAG_RE, W
 
 REQUIRED_META = ["title", "type", "sources", "status", "updated"]
 FACT_TYPES = {"source", "concept", "algorithm", "comparison"}
-MARKERS = ("（推論）", "（自編例子", "（白話說明）", "待確認")
+MARKERS = ("（推論）", "（自編例子", "（白話說明）", "待確認", "**已確認**")
 EXEMPT_HEADINGS = ("相關頁面", "書目", "原文符號", "更新紀錄")
 LOG_RE = re.compile(r"^## \[\d{4}-\d{2}-\d{2}\] (discuss|schema|ingest|query|search|lint|check|fix|build) \| .+")
 EXAMPLE_RE = re.compile(r"（自編例子\s*(E\d+)")
@@ -136,14 +136,14 @@ def main(label: str) -> int:
             rep.error(pid, f"這段沒有來源標註也沒有標記：「{text[:38]}…」")
     rep.info("非來源內容的標記數量：" + "、".join(f"{k} {v}" for k, v in marker_count.items()))
 
-    # 7. 待確認事項要同步到 open-questions
+    # 7. 待確認／已確認的註記都要同步到 open-questions
     if "open-questions" in pages:
         listed = set(links_in(bodies["open-questions"]))
         for pid, body in bodies.items():
             if pid in SPECIAL or pid == "open-questions":
                 continue
-            if "**待確認**" in body and pid not in listed:
-                rep.error("open-questions", f"{pid} 有待確認事項，但總表沒有連到它")
+            if ("**待確認**" in body or "**已確認**" in body) and pid not in listed:
+                rep.error("open-questions", f"{pid} 有待確認或已確認的註記，但總表沒有連到它")
 
     # 8. 自編例子的關鍵數字
     ex_file = RUNS / "examples.json"

@@ -3,7 +3,7 @@ title: Algorithm W：輪流看「重要」與「會生資源」
 type: algorithm
 sources: [JOSH2010]
 status: 已確認
-updated: 2026-11-16
+updated: 2026-11-17
 ---
 
 ## 適用的問題
@@ -71,7 +71,7 @@ Algorithm W 的逐步執行（自編例子 E2）：
 
 $n$ 越大比值越接近 2，與原文的極限結論一致 [JOSH2010 §3]。
 
-> **待確認**：原文印 Algorithm W 在這個例子的值為 $(n^2-n)/4$，但上表實際算出來的是 $n^2/4$（$n=6$ 時為 9）。詳見 [[sources/josh2010]]。
+> **已確認**：原文印 Algorithm W 在這個例子的值為 $(n^2-n)/4$，但上表實際算出來的是 $n^2/4$（$n=6$ 時為 9）。詳見 [[sources/josh2010]]。
 
 ## 相關頁面
 

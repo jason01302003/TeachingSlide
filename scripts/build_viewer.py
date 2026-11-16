@@ -122,7 +122,7 @@ def main() -> None:
 <aside>
 <h1>排程論文 LLM Wiki</h1>
 <p class="sub">五篇論文、{len(pages)} 個頁面。內容由 AI 依 CLAUDE.md 的規則撰寫與維護。</p>
-<p class="tools"><a href="#overview">總覽</a><a href="#index">目錄</a><a href="#log">操作紀錄</a><a href="#open-questions">待確認</a><a href="slides/index.html" target="_blank">簡報 ↗</a></p>
+<p class="tools"><a href="#overview">總覽</a><a href="#index">目錄</a><a href="#log">操作紀錄</a><a href="#open-questions">已確認事項</a><a href="slides/index.html" target="_blank">簡報 ↗</a></p>
 <input id="q" type="search" placeholder="搜尋頁面內容…" aria-label="搜尋頁面">
 <nav id="nav"></nav>
 </aside>

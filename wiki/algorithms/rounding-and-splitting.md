@@ -3,7 +3,7 @@ title: Rounding 與 Splitting：多個工作隊的近似演算法
 type: algorithm
 sources: [DO2006]
 status: 已確認
-updated: 2026-11-16
+updated: 2026-11-17
 ---
 
 ## 適用的問題
@@ -66,7 +66,7 @@ updated: 2026-11-16
 {"example": "E4-opt-m2", "rows": [{"label": "隊 1", "bars": [{"job": "A", "start": 0, "end": 1}, {"job": "C", "start": 1, "end": 2}, {"job": "F", "start": 2, "end": 3}, {"job": "D", "start": 3, "end": 4}]}, {"label": "隊 2", "bars": [{"job": "B", "start": 0, "end": 1}, {"job": "E", "start": 3, "end": 4}]}], "caption": "2 個工作隊的最佳排程：4 個時段"}
 ```
 
-> **待確認**：Rounding 步驟中新時段插入的位置，原文的演算法敘述與證明寫法略有不同（見 [[sources/do2006]]）。本例由 `scripts/examples.py` 依證明的說法執行，並由程式檢查結果確實可行。
+> **已確認**：Rounding 步驟中新時段插入的位置，原文的演算法敘述與證明寫法略有不同（見 [[sources/do2006]]）。本例由 `scripts/examples.py` 依證明的說法執行，並由程式檢查結果確實可行。
 
 ## 相關頁面
 
