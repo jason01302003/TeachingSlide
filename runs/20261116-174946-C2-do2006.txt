@@ -1,0 +1,5 @@
+檢查點 C2 | do2006 | 2026-11-16 17:49:46
+結果：通過（錯誤 0、警告 0）
+
+[資訊] 10 張；結構：title → motivation → definition → example → result → method → example → caveat → recap → further
+[資訊] 引用的 Wiki 頁面 8 個：algorithms/rounding-and-splitting, comparisons/complexity-table, concepts/approximation-algorithm, concepts/np-hardness, concepts/parallel-machines, concepts/relocation-problem, further-reading/do2006, sources/do2006

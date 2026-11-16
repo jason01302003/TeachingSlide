@@ -1,0 +1,7 @@
+檢查點 C2 | tswj2014 | 2026-11-16 17:50:19
+結果：不通過（錯誤 2、警告 0）
+
+[錯誤] 第 4 張「例子：兩邊的要求會衝突」: gantt 區塊「E6-opt」的內容與 scripts/examples.py 的輸出不一致
+[錯誤] tswj2014: 教學結構缺少「method」，或順序不對（目前順序：title → motivation → definition → example → method → method → result → caveat → recap → further）
+[資訊] 10 張；結構：title → motivation → definition → example → method → method → result → caveat → recap → further
+[資訊] 引用的 Wiki 頁面 6 個：algorithms/branch-and-bound, algorithms/simulated-annealing, concepts/scheduling-basics, concepts/two-agent-scheduling, further-reading/tswj2014, sources/tswj2014

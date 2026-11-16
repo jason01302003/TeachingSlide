@@ -1,0 +1,863 @@
+{
+ "E1": {
+  "desc": "單一工作隊的 relocation problem：四棟建物，求最小初始資源量；同一組數字當作兩機流程工廠",
+  "jobs": [
+   [
+    "A",
+    3,
+    5
+   ],
+   [
+    "B",
+    6,
+    2
+   ],
+   [
+    "C",
+    2,
+    4
+   ],
+   [
+    "D",
+    5,
+    4
+   ]
+  ],
+  "johnson_order": "C→A→D→B",
+  "v0_min": 3,
+  "v0_abcd": 5,
+  "v0_worst": 9,
+  "cmax_johnson": 18,
+  "idle_johnson": 3,
+  "cmax_abcd": 20,
+  "idle_abcd": 5,
+  "composite": [
+   3,
+   2
+  ],
+  "sum_q": 15,
+  "keys": [
+   "C→A→D→B",
+   "3"
+  ],
+  "blocks": {
+   "E1-levels": {
+    "example": "E1-levels",
+    "v0": 3,
+    "steps": [
+     {
+      "job": "C",
+      "alpha": 2,
+      "beta": 4,
+      "before": 3,
+      "during": 1,
+      "after": 5
+     },
+     {
+      "job": "A",
+      "alpha": 3,
+      "beta": 5,
+      "before": 5,
+      "during": 2,
+      "after": 7
+     },
+     {
+      "job": "D",
+      "alpha": 5,
+      "beta": 4,
+      "before": 7,
+      "during": 2,
+      "after": 6
+     },
+     {
+      "job": "B",
+      "alpha": 6,
+      "beta": 2,
+      "before": 6,
+      "during": 0,
+      "after": 2
+     }
+    ],
+    "caption": "依 C→A→D→B 的順序，初始資源 3 就夠用"
+   },
+   "E1-flowshop": {
+    "example": "E1-flowshop",
+    "rows": [
+     {
+      "label": "M1",
+      "bars": [
+       {
+        "job": "C",
+        "start": 0,
+        "end": 2
+       },
+       {
+        "job": "A",
+        "start": 2,
+        "end": 5
+       },
+       {
+        "job": "D",
+        "start": 5,
+        "end": 10
+       },
+       {
+        "job": "B",
+        "start": 10,
+        "end": 16
+       }
+      ]
+     },
+     {
+      "label": "M2",
+      "bars": [
+       {
+        "job": "C",
+        "start": 2,
+        "end": 6
+       },
+       {
+        "job": "A",
+        "start": 6,
+        "end": 11
+       },
+       {
+        "job": "D",
+        "start": 11,
+        "end": 15
+       },
+       {
+        "job": "B",
+        "start": 16,
+        "end": 18
+       }
+      ]
+     }
+    ],
+    "caption": "Johnson 順序 C→A→D→B：makespan 18，M2 閒置共 3"
+   },
+   "E1-flowshop-abcd": {
+    "example": "E1-flowshop-abcd",
+    "rows": [
+     {
+      "label": "M1",
+      "bars": [
+       {
+        "job": "A",
+        "start": 0,
+        "end": 3
+       },
+       {
+        "job": "B",
+        "start": 3,
+        "end": 9
+       },
+       {
+        "job": "C",
+        "start": 9,
+        "end": 11
+       },
+       {
+        "job": "D",
+        "start": 11,
+        "end": 16
+       }
+      ]
+     },
+     {
+      "label": "M2",
+      "bars": [
+       {
+        "job": "A",
+        "start": 3,
+        "end": 8
+       },
+       {
+        "job": "B",
+        "start": 9,
+        "end": 11
+       },
+       {
+        "job": "C",
+        "start": 11,
+        "end": 15
+       },
+       {
+        "job": "D",
+        "start": 16,
+        "end": 20
+       }
+      ]
+     }
+    ],
+    "caption": "順序 A→B→C→D：makespan 20，M2 閒置共 5"
+   }
+  }
+ },
+ "E2": {
+  "desc": "JOSH2010 原文的 4 個工作；WSPT 不可行，Algorithm W 的逐步執行為本腳本計算",
+  "wspt_feasible": false,
+  "z_without_resource": 14,
+  "opt": [
+   "J1",
+   "J2",
+   "J3",
+   "J4"
+  ],
+  "z_opt": 26,
+  "w_seq": [
+   "J1",
+   "J3",
+   "J2",
+   "J4"
+  ],
+  "z_w": 26,
+  "trace": [
+   {
+    "pos": 1,
+    "list": "π1",
+    "job": "J1",
+    "before": 0,
+    "after": 2
+   },
+   {
+    "pos": 2,
+    "list": "π2",
+    "job": "J3",
+    "before": 2,
+    "after": 7
+   },
+   {
+    "pos": 3,
+    "list": "π1",
+    "job": "J2",
+    "before": 7,
+    "after": 10
+   },
+   {
+    "pos": 4,
+    "list": "π2",
+    "job": "J4",
+    "before": 10,
+    "after": 10
+   }
+  ],
+  "keys": [
+   "26",
+   "J1→J3→J2→J4"
+  ]
+ },
+ "E3": {
+  "desc": "JOSH2010 緊例族的實際計算，用來核對原文的封閉式",
+  "rows": [
+   {
+    "n": 4,
+    "z_w": 4,
+    "z_opt": 3,
+    "ratio": 1.333,
+    "n2_over_4": 4,
+    "printed_formula": 3.0,
+    "opt_formula": 3
+   },
+   {
+    "n": 6,
+    "z_w": 9,
+    "z_opt": 6,
+    "ratio": 1.5,
+    "n2_over_4": 9,
+    "printed_formula": 7.5,
+    "opt_formula": 6
+   },
+   {
+    "n": 8,
+    "z_w": 16,
+    "z_opt": 10,
+    "ratio": 1.6,
+    "n2_over_4": 16,
+    "printed_formula": 14.0,
+    "opt_formula": 10
+   },
+   {
+    "n": 100,
+    "z_w": 2500,
+    "z_opt": 1275,
+    "ratio": 1.961,
+    "n2_over_4": 2500,
+    "printed_formula": 2475.0,
+    "opt_formula": 1275
+   }
+  ],
+  "keys": [
+   "9",
+   "6"
+  ]
+ },
+ "E4": {
+  "desc": "多個工作隊、單位工時：資源限制讓多一個工作隊也無法把工期減半",
+  "jobs": {
+   "A": [
+    2,
+    3
+   ],
+   "B": [
+    2,
+    3
+   ],
+   "C": [
+    3,
+    4
+   ],
+   "D": [
+    4,
+    6
+   ],
+   "E": [
+    5,
+    6
+   ],
+   "F": [
+    6,
+    8
+   ]
+  },
+  "v0": 4,
+  "opt_m1": 6,
+  "opt_m2": 4,
+  "opt_unbounded": 4,
+  "relaxed_len": 4,
+  "relaxed": [
+   {
+    "A": "1",
+    "B": "1"
+   },
+   {
+    "D": "1",
+    "C": "2/3"
+   },
+   {
+    "C": "1/3",
+    "F": "1",
+    "E": "1/3"
+   },
+   {
+    "E": "2/3"
+   }
+  ],
+  "fragmented": [
+   "C",
+   "E"
+  ],
+  "rounded_len": 5,
+  "rounded": [
+   [
+    "A",
+    "B"
+   ],
+   [
+    "D"
+   ],
+   [
+    "C"
+   ],
+   [
+    "F"
+   ],
+   [
+    "E"
+   ]
+  ],
+  "split2_len": 5,
+  "split2": [
+   [
+    "A",
+    "B"
+   ],
+   [
+    "D"
+   ],
+   [
+    "C"
+   ],
+   [
+    "F"
+   ],
+   [
+    "E"
+   ]
+  ],
+  "keys": [
+   "4",
+   "5"
+  ],
+  "blocks": {
+   "E4-opt-m2": {
+    "example": "E4-opt-m2",
+    "rows": [
+     {
+      "label": "隊 1",
+      "bars": [
+       {
+        "job": "A",
+        "start": 0,
+        "end": 1
+       },
+       {
+        "job": "C",
+        "start": 1,
+        "end": 2
+       },
+       {
+        "job": "F",
+        "start": 2,
+        "end": 3
+       },
+       {
+        "job": "D",
+        "start": 3,
+        "end": 4
+       }
+      ]
+     },
+     {
+      "label": "隊 2",
+      "bars": [
+       {
+        "job": "B",
+        "start": 0,
+        "end": 1
+       },
+       {
+        "job": "E",
+        "start": 3,
+        "end": 4
+       }
+      ]
+     }
+    ],
+    "caption": "2 個工作隊的最佳排程：4 個時段"
+   },
+   "E4-rounded": {
+    "example": "E4-rounded",
+    "rows": [
+     {
+      "label": "隊 1",
+      "bars": [
+       {
+        "job": "A",
+        "start": 0,
+        "end": 1
+       },
+       {
+        "job": "D",
+        "start": 1,
+        "end": 2
+       },
+       {
+        "job": "C",
+        "start": 2,
+        "end": 3
+       },
+       {
+        "job": "F",
+        "start": 3,
+        "end": 4
+       },
+       {
+        "job": "E",
+        "start": 4,
+        "end": 5
+       }
+      ]
+     },
+     {
+      "label": "隊 2",
+      "bars": [
+       {
+        "job": "B",
+        "start": 0,
+        "end": 1
+       }
+      ]
+     }
+    ],
+    "caption": "Rounding 的結果（不限工作隊數）：5 個時段"
+   },
+   "E4-split2": {
+    "example": "E4-split2",
+    "rows": [
+     {
+      "label": "隊 1",
+      "bars": [
+       {
+        "job": "A",
+        "start": 0,
+        "end": 1
+       },
+       {
+        "job": "D",
+        "start": 1,
+        "end": 2
+       },
+       {
+        "job": "C",
+        "start": 2,
+        "end": 3
+       },
+       {
+        "job": "F",
+        "start": 3,
+        "end": 4
+       },
+       {
+        "job": "E",
+        "start": 4,
+        "end": 5
+       }
+      ]
+     },
+     {
+      "label": "隊 2",
+      "bars": [
+       {
+        "job": "B",
+        "start": 0,
+        "end": 1
+       }
+      ]
+     }
+    ],
+    "caption": "Splitting 成 2 個工作隊：5 個時段"
+   }
+  }
+ },
+ "E5": {
+  "desc": "兩台專用機、加工順序固定：只剩「何時開始」要決定，資源仍會逼機器等待",
+  "m1": [
+   [
+    "a1",
+    2,
+    2,
+    3
+   ],
+   [
+    "a2",
+    3,
+    3,
+    3
+   ],
+   [
+    "a3",
+    2,
+    4,
+    6
+   ]
+  ],
+  "m2": [
+   [
+    "b1",
+    3,
+    2,
+    4
+   ],
+   [
+    "b2",
+    2,
+    5,
+    5
+   ],
+   [
+    "b3",
+    1,
+    1,
+    2
+   ]
+  ],
+  "v0": 4,
+  "no_resource_makespan": 7,
+  "cmax": 9,
+  "cmax_starts": {
+   "a1": 0,
+   "a2": 2,
+   "b1": 2,
+   "b2": 5,
+   "a3": 7,
+   "b3": 7
+  },
+  "sumc": 34,
+  "sumc_starts": {
+   "a1": 0,
+   "b1": 0,
+   "a2": 2,
+   "b2": 5,
+   "a3": 7,
+   "b3": 7
+  },
+  "sumc_cmax": 9,
+  "sumc_trace": [
+   {
+    "t": 0,
+    "done": [],
+    "start": [
+     "a1",
+     "b1"
+    ],
+    "after_return": 4,
+    "after_start": 0
+   },
+   {
+    "t": 2,
+    "done": [
+     "a1"
+    ],
+    "start": [
+     "a2"
+    ],
+    "after_return": 3,
+    "after_start": 0
+   },
+   {
+    "t": 3,
+    "done": [
+     "b1"
+    ],
+    "start": [],
+    "after_return": 4,
+    "after_start": 4
+   },
+   {
+    "t": 5,
+    "done": [
+     "a2"
+    ],
+    "start": [
+     "b2"
+    ],
+    "after_return": 7,
+    "after_start": 2
+   },
+   {
+    "t": 7,
+    "done": [
+     "b2"
+    ],
+    "start": [
+     "a3",
+     "b3"
+    ],
+    "after_return": 7,
+    "after_start": 2
+   },
+   {
+    "t": 8,
+    "done": [
+     "b3"
+    ],
+    "start": [],
+    "after_return": 4,
+    "after_start": 4
+   },
+   {
+    "t": 9,
+    "done": [
+     "a3"
+    ],
+    "start": [],
+    "after_return": 10,
+    "after_start": 10
+   }
+  ],
+  "keys": [
+   "9",
+   "7"
+  ],
+  "blocks": {
+   "E5-cmax": {
+    "example": "E5-cmax",
+    "rows": [
+     {
+      "label": "M1",
+      "bars": [
+       {
+        "job": "a1",
+        "start": 0,
+        "end": 2
+       },
+       {
+        "job": "a2",
+        "start": 2,
+        "end": 5
+       },
+       {
+        "job": "a3",
+        "start": 7,
+        "end": 9
+       }
+      ]
+     },
+     {
+      "label": "M2",
+      "bars": [
+       {
+        "job": "b1",
+        "start": 2,
+        "end": 5
+       },
+       {
+        "job": "b2",
+        "start": 5,
+        "end": 7
+       },
+       {
+        "job": "b3",
+        "start": 7,
+        "end": 8
+       }
+      ]
+     }
+    ],
+    "caption": "最小 makespan = 9（不管資源的話是 7）"
+   },
+   "E5-sumc": {
+    "example": "E5-sumc",
+    "rows": [
+     {
+      "label": "M1",
+      "bars": [
+       {
+        "job": "a1",
+        "start": 0,
+        "end": 2
+       },
+       {
+        "job": "a2",
+        "start": 2,
+        "end": 5
+       },
+       {
+        "job": "a3",
+        "start": 7,
+        "end": 9
+       }
+      ]
+     },
+     {
+      "label": "M2",
+      "bars": [
+       {
+        "job": "b1",
+        "start": 0,
+        "end": 3
+       },
+       {
+        "job": "b2",
+        "start": 5,
+        "end": 7
+       },
+       {
+        "job": "b3",
+        "start": 7,
+        "end": 8
+       }
+      ]
+     }
+    ],
+    "caption": "最小總完工時間 = 34，這個排程的 makespan 是 9"
+   }
+  }
+ },
+ "E6": {
+  "desc": "雙代理人單機排程的小例子：AG1 最小化 θΣT+(1−θ)ΣC，AG2 不得延遲",
+  "jobs": [
+   [
+    "a1",
+    1,
+    3,
+    6
+   ],
+   [
+    "a2",
+    1,
+    2,
+    9
+   ],
+   [
+    "a3",
+    1,
+    5,
+    12
+   ],
+   [
+    "b1",
+    2,
+    4,
+    6
+   ],
+   [
+    "b2",
+    2,
+    3,
+    16
+   ]
+  ],
+  "theta": "1/2",
+  "n_perm": 120,
+  "n_feasible": 22,
+  "spt": "a2→a1→b2→b1→a3",
+  "spt_feasible": false,
+  "spt_obj": 14.5,
+  "spt_b1_completion": 12,
+  "prefix_a1_a3_b1_completion": 12,
+  "init": "b1→b2→a2→a1→a3",
+  "init_feasible": true,
+  "init_obj": 24.5,
+  "opt": "a2→b1→a1→b2→a3",
+  "opt_obj": 18.0,
+  "keys": [
+   "a2→b1→a1→b2→a3",
+   "18"
+  ],
+  "blocks": {
+   "E6-opt": {
+    "example": "E6-opt",
+    "rows": [
+     {
+      "label": "機器",
+      "bars": [
+       {
+        "job": "a2",
+        "start": 0,
+        "end": 2,
+        "group": 1
+       },
+       {
+        "job": "b1",
+        "start": 2,
+        "end": 6,
+        "group": 2
+       },
+       {
+        "job": "a1",
+        "start": 6,
+        "end": 9,
+        "group": 1
+       },
+       {
+        "job": "b2",
+        "start": 9,
+        "end": 12,
+        "group": 2
+       },
+       {
+        "job": "a3",
+        "start": 12,
+        "end": 17,
+        "group": 1
+       }
+      ]
+     }
+    ],
+    "caption": "最佳順序 a2→b1→a1→b2→a3：目標值 18"
+   }
+  }
+ }
+}

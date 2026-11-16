@@ -1,0 +1,5 @@
+檢查點 C2 | josh2016 | 2026-11-16 17:50:19
+結果：通過（錯誤 0、警告 0）
+
+[資訊] 9 張；結構：title → motivation → definition → example → result → method → caveat → recap → further
+[資訊] 引用的 Wiki 頁面 8 個：algorithms/backward-dp, comparisons/complexity-table, concepts/fixed-sequence, concepts/np-hardness, concepts/parallel-machines, concepts/relocation-problem, further-reading/josh2016, sources/josh2016

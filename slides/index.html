@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relocation Problem 是什麼？五篇排程論文導讀</title>
+<link rel="stylesheet" href="assets/deck.css">
+</head>
+<body class="hub">
+<main>
+<p class="eyebrow">排程論文 LLM Wiki · 教學簡報</p>
+<h1>Relocation Problem 是什麼？</h1>
+<p class="lead">五篇論文各一份簡報，內容全部來自 <a href="../wiki.html">LLM Wiki</a>。建議依下列順序閱讀：先看 relocation problem 與 Johnson's rule 的關係，再看多個工作隊、加權完工時間與固定順序三個延伸；最後一份是 Wiki 裡的另一個分支。</p>
+<div class="cards">
+<a class="card" href="ejor2009.html"><span class="step">1</span>
+<small>Relocation problem</small><h2>Relocation Problem 是什麼？從 Johnson&#x27;s rule 看起</h2>
+<p>從公共住宅重建的故事出發，看為什麼「先做哪一個」會決定計畫做不做得成，以及一條簡單的規則如何找到最省資源的順序。</p>
+<em>Cheng &amp; Lin (2009), European Journal of Operational Research 192, 1008–1013 · 9 張</em></a>
+<a class="card" href="do2006.html"><span class="step">2</span>
+<small>Relocation problem</small><h2>多個工作隊：人手變多，問題反而變難</h2>
+<p>多一個工作隊可以同時施工，聽起來是好事，卻讓問題從容易變成 strongly NP-hard；這份簡報看研究者怎麼退一步，用近似演算法換取有保證的答案。</p>
+<em>Kononov &amp; Lin (2006), Discrete Optimization 3, 366–381 · 10 張</em></a>
+<a class="card" href="josh2010.html"><span class="step">3</span>
+<small>Relocation problem</small><h2>重要的工作先做？資源說了算</h2>
+<p>重要的工作想先做，卻因為資源不夠而不能開始；單機、工時都是 1 的情形就已經 strongly NP-hard，這份簡報看 Algorithm W 怎麼保證不會差超過兩倍。</p>
+<em>Kononov &amp; Lin (2010), Journal of Scheduling, DOI 10.1007/s10951-009-0151-7 · 10 張</em></a>
+<a class="card" href="josh2016.html"><span class="step">4</span>
+<small>Relocation problem</small><h2>順序都定好了，還有什麼好決定？</h2>
+<p>如果機器的指派與順序都已經定好，只決定「何時開始」，會變簡單嗎？答案要看目標：有的可以用動態規劃快速解決，有的仍然是 NP-hard。</p>
+<em>Lin, Hwang &amp; Kononov (2016), Journal of Scheduling 19(2), 153–163 · 9 張</em></a>
+<a class="card" href="tswj2014.html"><span class="step">5</span>
+<small>另一個分支：雙代理人排程</small><h2>兩位客戶共用一台機器</h2>
+<p>兩位客戶共用一台機器，一方要快、一方不能晚；看研究者怎麼用分支定界求最佳解、用模擬退火處理大問題。這是 Wiki 裡與 relocation problem 無關的另一個分支。</p>
+<em>Lee, Shiau, Chung &amp; Ding (2014), The Scientific World Journal, Article 596306 · 10 張</em></a>
+</div>
+<p class="note">每張投影片頁尾的「出處」可以點回 Wiki 對應的頁面。每份簡報最後一張是延伸閱讀，列的是 Wiki 以外的論文。</p>
+</main>
+</body>
+</html>

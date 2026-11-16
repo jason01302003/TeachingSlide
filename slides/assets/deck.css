@@ -1,0 +1,94 @@
+:root {
+  --paper: #f7f5ef; --card: #ffffff; --ink: #1c2530; --muted: #5b6673; --line: #dcd8cc;
+  --accent: #0f766e; --accent-soft: #d9efec; --warn: #b45309; --warn-soft: #fbeedb;
+  --font: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --paper: #12171d; --card: #1a212a; --ink: #e8ecf1; --muted: #9aa6b4; --line: #2e3945;
+          --accent: #5eead4; --accent-soft: #123b38; --warn: #fbbf24; --warn-soft: #3b2a0c; }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--paper); color: var(--ink); font-family: var(--font); }
+a { color: var(--accent); }
+
+/* ---------- 簡報 ---------- */
+body.deck { overflow: hidden; }
+#stage { position: absolute; left: 50%; top: calc(50% - 22px); width: 1280px; height: 720px; transform-origin: center; }
+.slide { position: absolute; inset: 0; display: none; flex-direction: column; padding: 46px 64px 26px;
+         background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
+.slide.on { display: flex; }
+.slide header { margin-bottom: 16px; }
+.slide .kind { display: inline-block; font-size: 17px; font-weight: 700; letter-spacing: .08em; color: var(--accent); min-height: 22px; }
+.slide h2 { margin: 4px 0 0; font-size: 42px; line-height: 1.25; text-wrap: balance; }
+.slide .body { flex: 1; min-height: 0; overflow: hidden; font-size: 25px; line-height: 1.6; }
+.slide .body > :first-child { margin-top: 0; }
+.slide .body p { margin: .5em 0; }
+.slide .body ul, .slide .body ol { margin: .4em 0; padding-left: 1.3em; }
+.slide .body li { margin: .28em 0; }
+.slide .body li::marker { color: var(--accent); }
+.slide .body strong { color: var(--accent); }
+.slide footer { display: flex; justify-content: space-between; gap: 24px; padding-top: 10px; border-top: 1px solid var(--line);
+                font-size: 15px; color: var(--muted); }
+.slide footer .src { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.slide footer .no { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.slide[data-kind="title"] { justify-content: center; padding-left: 96px; padding-right: 96px; }
+.slide[data-kind="title"] header { margin-bottom: 8px; }
+.slide[data-kind="title"] h2 { font-size: 62px; }
+.slide[data-kind="title"] .body { flex: 0 0 auto; font-size: 27px; color: var(--muted); margin-bottom: 40px; }
+.slide[data-kind="further"] .body { font-size: 20px; line-height: 1.5; }
+.slide[data-kind="further"] .body p { margin: .45em 0 1em; }
+
+blockquote { margin: .6em 0; padding: .5em 1em; border-left: 5px solid var(--accent); background: var(--accent-soft); border-radius: 0 8px 8px 0; }
+blockquote.todo { border-left-color: var(--warn); background: var(--warn-soft); }
+blockquote.todo strong, .slide .body blockquote.todo strong { color: var(--warn); }
+blockquote p { margin: .2em 0; }
+code { font-family: Consolas, "Cascadia Mono", monospace; font-size: .9em; background: var(--accent-soft); padding: .05em .35em; border-radius: 5px; }
+pre { background: var(--accent-soft); padding: .8em 1em; border-radius: 8px; overflow: auto; }
+pre code { background: none; padding: 0; }
+.cite { font-size: .62em; font-weight: 600; color: var(--muted); border: 1px solid var(--line); border-radius: 999px;
+        padding: .1em .6em; margin-left: .25em; white-space: nowrap; text-decoration: none; vertical-align: .15em; }
+.tablewrap { overflow-x: auto; margin: .5em 0; }
+table { border-collapse: collapse; width: 100%; font-size: .86em; }
+th, td { border-bottom: 1px solid var(--line); padding: .38em .7em; text-align: left; vertical-align: top; }
+th { color: var(--muted); font-weight: 700; border-bottom-width: 2px; white-space: nowrap; }
+figure { margin: .4em 0; }
+figcaption { font-size: .72em; color: var(--muted); text-align: center; margin-top: .2em; }
+svg.diagram { width: 100%; height: auto; display: block; font-family: var(--font); }
+svg.diagram .grid { stroke: var(--line); stroke-width: 1; }
+svg.diagram .tick { fill: var(--muted); font-size: 14px; text-anchor: middle; }
+svg.diagram .tick.strong { fill: var(--ink); font-weight: 700; font-size: 15px; }
+svg.diagram .rowlabel { fill: var(--ink); font-size: 16px; font-weight: 700; text-anchor: end; }
+svg.diagram .barlabel { fill: #fff; font-size: 15px; font-weight: 700; text-anchor: middle; }
+svg.diagram .level { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; }
+svg.diagram .dot { fill: var(--ink); }
+
+#bar { position: fixed; left: 0; right: 0; bottom: 0; height: 44px; display: flex; align-items: center; gap: 12px; padding: 0 16px;
+       background: var(--paper); border-top: 1px solid var(--line); }
+#bar a { text-decoration: none; font-size: 20px; color: var(--muted); }
+#bar button { width: 36px; height: 30px; font-size: 22px; line-height: 1; border: 1px solid var(--line); border-radius: 8px;
+              background: var(--card); color: var(--ink); cursor: pointer; }
+#bar button:hover { border-color: var(--accent); color: var(--accent); }
+#progress { flex: 1; height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
+#progress i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .2s; }
+
+/* ---------- 簡報入口 ---------- */
+body.hub main { max-width: 980px; margin: 0 auto; padding: 56px 20px 72px; }
+.eyebrow { font-weight: 700; letter-spacing: .08em; color: var(--accent); margin: 0; }
+body.hub h1 { font-size: clamp(34px, 6vw, 54px); margin: .15em 0 .3em; text-wrap: balance; }
+.lead { font-size: 19px; line-height: 1.75; color: var(--muted); max-width: 46em; }
+.cards { display: grid; gap: 16px; margin: 32px 0; }
+.card { position: relative; display: block; padding: 20px 24px 20px 76px; background: var(--card); border: 1px solid var(--line);
+        border-radius: 14px; color: inherit; text-decoration: none; }
+.card:hover { border-color: var(--accent); }
+.card .step { position: absolute; left: 22px; top: 22px; width: 36px; height: 36px; display: grid; place-items: center;
+              border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-weight: 700; }
+.card small { color: var(--accent); font-weight: 700; letter-spacing: .04em; }
+.card h2 { margin: .15em 0 .3em; font-size: 23px; }
+.card p { margin: 0 0 .5em; color: var(--muted); line-height: 1.65; }
+.card em { font-style: normal; font-size: 14px; color: var(--muted); }
+.note { color: var(--muted); font-size: 15px; line-height: 1.7; }
+
+/* 瀏覽器實測後的調整：圖表限高、延伸閱讀字級縮小，避免內容超出投影片 */
+.slide svg.diagram { max-height: 270px; }
+.slide[data-kind="further"] .body { font-size: 17px; line-height: 1.45; }
+.slide[data-kind="further"] .body p { margin: .3em 0 .7em; }

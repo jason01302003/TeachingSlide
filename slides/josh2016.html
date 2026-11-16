@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>順序都定好了，還有什麼好決定？</title>
+<link rel="stylesheet" href="assets/deck.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+</head>
+<body class="deck" data-deck="josh2016">
+<div id="stage">
+<section class="slide" data-kind="title" data-wiki="sources/josh2016">
+<header><span class="kind"></span><h2>順序都定好了，還有什麼好決定？</h2></header>
+<div class="body"><script type="text/markdown">
+Lin, Hwang & Kononov（2016）導讀
+</script></div>
+<footer><span class="src">出處：Wiki › <a href="../wiki.html#sources/josh2016" target="wiki">JOSH2016｜加工順序固定的 relocation 排程</a></span><span class="no">1 / 9</span></footer>
+</section>
+<section class="slide" data-kind="motivation" data-wiki="concepts/fixed-sequence,concepts/relocation-problem">
+<header><span class="kind">為什麼要關心</span><h2>把大問題拆成三步</h2></header>
+<div class="body"><script type="text/markdown">
+完整的問題要決定三件事：
+
+1. 哪個工作給哪台機器
+2. 每台機器上先做誰
+3. 每個工作什麼時候開始
+
+本文只研究第三步，因為如果這一步能快速算出，就能當作搜尋法的零件，替每個候選順序打分數。
+</script></div>
+<footer><span class="src">出處：Wiki › <a href="../wiki.html#concepts/fixed-sequence" target="wiki">固定順序（Fixed sequence）：只剩「何時開始」要決定</a> · <a href="../wiki.html#concepts/relocation-problem" target="wiki">Relocation Problem（遷置問題）</a></span><span class="no">2 / 9</span></footer>
+</section>
+<section class="slide" data-kind="definition" data-wiki="sources/josh2016,concepts/parallel-machines">
+<header><span class="kind">問題定義</span><h2>問題定義：兩台專用機、順序固定</h2></header>
+<div class="body"><script type="text/markdown">
+- 兩台專用機，每個工作只能在指定的機器上做，兩邊的順序都已經給定
+- 共用一個資源池；兩台機器可以同時加工，前提是資源夠
+- 同一時間點，先讓完成的工作歸還資源，再讓新工作取用
+- 研究六種目標：$C_{\max}$、$\sum w_jC_j$、$L_{\max}$、$\sum w_jT_j$、$\sum w_jU_j$、$\sum U_j$
+</script></div>
+<footer><span class="src">出處：Wiki › <a href="../wiki.html#sources/josh2016" target="wiki">JOSH2016｜加工順序固定的 relocation 排程</a> · <a href="../wiki.html#concepts/parallel-machines" target="wiki">平行機器：相同機與專用機</a></span><span class="no">3 / 9</span></footer>
+</section>
+<section class="slide" data-kind="example" data-wiki="concepts/fixed-sequence">
+<header><span class="kind">例子</span><h2>例子：資源逼機器等待</h2></header>
+<div class="body"><script type="text/markdown">
+$M_1$ 的順序 a1→a2→a3，$M_2$ 的順序 b1→b2→b3，初始資源 4。
+
+- 不管資源，兩台各自連續做：makespan 是 7
+- 加上資源限制後，最小 makespan 是 9，最小的總完工時間是 34
+- 時間 3 時 b1 做完，$M_2$ 空了，但池中只有 4 單位，b2 要 5 單位，只能等
+
+```gantt
+{"example": "E5-sumc", "rows": [{"label": "M1", "bars": [{"job": "a1", "start": 0, "end": 2}, {"job": "a2", "start": 2, "end": 5}, {"job": "a3", "start": 7, "end": 9}]}, {"label": "M2", "bars": [{"job": "b1", "start": 0, "end": 3}, {"job": "b2", "start": 5, "end": 7}, {"job": "b3", "start": 7, "end": 8}]}], "caption": "最小總完工時間 = 34，這個排程的 makespan 是 9"}
+```
+</script></div>
+<footer><span class="src">出處：Wiki › <a href="../wiki.html#concepts/fixed-sequence" target="wiki">固定順序（Fixed sequence）：只剩「何時開始」要決定</a></span><span class="no">4 / 9</span></footer>
+</section>
+<section class="slide" data-kind="result" data-wiki="comparisons/complexity-table,sources/josh2016">
+<header><span class="kind">主要結果</span><h2>主要結果：看目標而定</h2></header>
+<div class="body"><script type="text/markdown">
+| 目標 | 順序固定後 |
+|---|---|
+| $C_{\max}$、$\sum w_jC_j$、$L_{\max}$ | 多項式時間，$O(n_1n_2(n_1+n_2))$ |
+| $\sum U_j$ | 多項式時間 |
+| $\sum w_jT_j$、$\sum w_jU_j$ | NP-hard（普通意義） |
+| $\sum T_j$ | 尚未解決 |
+
+加工時間都相同時，六種目標全部是多項式時間。
+</script></div>
+<footer><span class="src">出處：Wiki › <a href="../wiki.html#comparisons/complexity-table" target="wiki">複雜度結果總表</a> · <a href="../wiki.html#sources/josh2016" target="wiki">JOSH2016｜加工順序固定的 relocation 排程</a></span><span class="no">5 / 9</span></footer>
+</section>
+<section class="slide" data-kind="method" data-wiki="algorithms/backward-dp">
+<header><span class="kind">方法</span><h2>方法：排程區塊與動態規劃</h2></header>
+<div class="body"><script type="text/markdown">
+- 狀態 $(i,j)$：$M_1$ 還剩第 $i$ 個以後、$M_2$ 還剩第 $j$ 個以後的工作
+- 由後往前，每次接上一個「排程區塊」，只有三種情形：只有 $M_1$ 做、只有 $M_2$ 做、兩台同時開始並重疊
+- 前三個目標不用多記什麼：整段往後挪，目標值只加上固定的量
+- 延遲類目標要把「已過的時間」記進狀態，所以時間跟加工時間的大小有關
+</script></div>
+<footer><span class="src">出處：Wiki › <a href="../wiki.html#algorithms/backward-dp" target="wiki">排程區塊與動態規劃（BDP-1、BDP-2、FDP）</a></span><span class="no">6 / 9</span></footer>
+</section>
+<section class="slide" data-kind="caveat" data-wiki="concepts/np-hardness,algorithms/backward-dp">
+<header><span class="kind">注意</span><h2>為什麼有的目標難</h2></header>
+<div class="body"><script type="text/markdown">
+- $\sum w_jT_j$ 是普通意義的 NP-hard：數字不大時其實可以解
+- 動態規劃的時間與加工時間總和成正比，加工時間都相同時就變成多項式時間
+- strongly NP-hard 的問題沒有這種出路
+</script></div>
+<footer><span class="src">出處：Wiki › <a href="../wiki.html#concepts/np-hardness" target="wiki">NP-hard 與 strongly NP-hard</a> · <a href="../wiki.html#algorithms/backward-dp" target="wiki">排程區塊與動態規劃（BDP-1、BDP-2、FDP）</a></span><span class="no">7 / 9</span></footer>
+</section>
+<section class="slide" data-kind="recap" data-wiki="sources/josh2016,concepts/fixed-sequence">
+<header><span class="kind">回顧</span><h2>回顧</h2></header>
+<div class="body"><script type="text/markdown">
+- 把決策拆開，單獨研究「何時開始」這一步
+- 順序固定也不一定簡單：六種目標中，四種可快速解，兩種是 NP-hard
+- 可以快速解的，能當作搜尋法的零件
+- 與庫存限制排程相關，是作者提出的後續方向
+</script></div>
+<footer><span class="src">出處：Wiki › <a href="../wiki.html#sources/josh2016" target="wiki">JOSH2016｜加工順序固定的 relocation 排程</a> · <a href="../wiki.html#concepts/fixed-sequence" target="wiki">固定順序（Fixed sequence）：只剩「何時開始」要決定</a></span><span class="no">8 / 9</span></footer>
+</section>
+<section class="slide" data-kind="further" data-wiki="further-reading/josh2016">
+<header><span class="kind">延伸閱讀</span><h2>延伸閱讀</h2></header>
+<div class="body"><script type="text/markdown">
+> 以下為 Wiki 以外的資料，依書目與摘要推薦，未讀全文。
+
+**Complexity of single machine scheduling subject to nonnegative inventory constraints**  
+Briskorn, D.; Choi, B.-C.; Lee, K.; Leung, J.; Pinedo, M.（2010）．*European Journal of Operational Research*．[doi:10.1016/j.ejor.2010.05.036](https://doi.org/10.1016/j.ejor.2010.05.036)  
+〔相關領域〕JOSH2016 在結論把庫存限制排程列為與 relocation problem 相關的領域，並引用這篇 [JOSH2016 §6]；想知道庫存限制的單機問題複雜度，可以讀它（依書目，未讀全文）。
+
+**Maximizing the reward in the relocation problem with generalized due dates**  
+Lin, B. M. T.; Liu, Z.（2008）．*International Journal of Production Economics*．[doi:10.1016/j.ijpe.2008.04.009](https://doi.org/10.1016/j.ijpe.2008.04.009)  
+〔同一個問題的另一種目標〕標題顯示它在 relocation problem 中考慮廣義交期，與簡報裡的 $L_{\max}$、延遲類目標相近。五篇來源都沒有引用它，所以這個推薦只依標題（依標題，未讀全文）。
+
+**Relocation problems are hard**  
+Amir, A.; Kaplan, E. H.（1988）．*International Journal of Computer Mathematics*．[doi:10.1080/00207168808803664](https://doi.org/10.1080/00207168808803664)  
+〔入門的難度結果〕JOSH2016 引用它說明兩個工作隊的問題為何難 [JOSH2016 §1]；想先理解為什麼一般版本難、才看固定順序的簡化，可以先讀它（依書目，未讀全文）。
+
+</script></div>
+<footer><span class="src">出處：Wiki › <a href="../wiki.html#further-reading/josh2016" target="wiki">延伸閱讀｜加工順序固定的 Relocation 排程</a></span><span class="no">9 / 9</span></footer>
+</section>
+</div>
+<nav id="bar"><a href="index.html" title="回簡報入口">☰</a><button id="prev" aria-label="上一張">‹</button><div id="progress"><i></i></div><button id="next" aria-label="下一張">›</button></nav>
+<script src="assets/render.js"></script>
+<script src="assets/deck.js"></script>
+</body>
+</html>

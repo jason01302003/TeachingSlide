@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>兩位客戶共用一台機器</title>
+<link rel="stylesheet" href="assets/deck.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+</head>
+<body class="deck" data-deck="tswj2014">
+<div id="stage">
+<section class="slide" data-kind="title" data-wiki="sources/tswj2014">
+<header><span class="kind"></span><h2>兩位客戶共用一台機器</h2></header>
+<div class="body"><script type="text/markdown">
+Lee, Shiau, Chung & Ding（2014）導讀。這篇與 relocation problem 沒有直接關係，是 Wiki 裡的另一個分支。
+</script></div>
+<footer><span class="src">出處：Wiki › <a href="../wiki.html#sources/tswj2014" target="wiki">TSWJ2014｜雙代理人單機排程</a></span><span class="no">1 / 10</span></footer>
+</section>
+<section class="slide" data-kind="motivation" data-wiki="concepts/two-agent-scheduling">
+<header><span class="kind">為什麼要關心</span><h2>當工作來自不同的客戶</h2></header>
+<div class="body"><script type="text/markdown">
+- 傳統排程假設所有工作有同一個目標
+- 現實中，工作來自不同的客戶，各自在意不同的事
+- 例：研發部門要快速回應，製造部門要準時交貨，兩邊共用同一個試作工場
+- 排程者要在兩邊的要求之間取捨
+</script></div>
+<footer><span class="src">出處：Wiki › <a href="../wiki.html#concepts/two-agent-scheduling" target="wiki">雙代理人排程（Two-agent scheduling）</a></span><span class="no">2 / 10</span></footer>
+</section>
+<section class="slide" data-kind="definition" data-wiki="sources/tswj2014,concepts/scheduling-basics">
+<header><span class="kind">問題定義</span><h2>問題定義</h2></header>
+<div class="body"><script type="text/markdown">
+- 一台機器；每個工作屬於 $AG_1$ 或 $AG_2$，有加工時間 $p_j$ 與交期 $d_j$
+- 延遲時間 $T_j=\max\{0, C_j-d_j\}$
+- $AG_2$ 的工作一件都不能延遲
+- 在此前提下，讓 $AG_1$ 的 $\sum(\theta T_j+(1-\theta)C_j)$ 最小
+- 沒有 $AG_2$ 且 $\theta=1$ 時，就是已知 NP-hard 的總延遲時間問題，所以這個問題也難
+</script></div>
+<footer><span class="src">出處：Wiki › <a href="../wiki.html#sources/tswj2014" target="wiki">TSWJ2014｜雙代理人單機排程</a> · <a href="../wiki.html#concepts/scheduling-basics" target="wiki">排程的基本用語與三欄記號</a></span><span class="no">3 / 10</span></footer>
+</section>
+<section class="slide" data-kind="example" data-wiki="concepts/two-agent-scheduling">
+<header><span class="kind">例子</span><h2>例子：兩邊的要求會衝突</h2></header>
+<div class="body"><script type="text/markdown">
+五個工作，$\theta=1/2$。120 種順序中，只有 22 種讓 $AG_2$ 不延遲。
+
+| 排法 | 可行嗎 | $AG_1$ 目標值 |
+|---|---|---|
+| 全部照 SPT | 不可行 | 14.5（若不管 $AG_2$） |
+| $AG_2$ 先做完 | 可行 | 24.5 |
+| 最佳解 | 可行 | 18 |
+
+```gantt
+{"example": "E6-opt", "rows": [{"label": "機器", "bars": [{"job": "a2", "start": 0, "end": 2, "group": 1}, {"job": "b1", "start": 2, "end": 6, "group": 2}, {"job": "a1", "start": 6, "end": 9, "group": 1}, {"job": "b2", "start": 9, "end": 12, "group": 2}, {"job": "a3", "start": 12, "end": 17, "group": 1}]}], "caption": "最佳順序 a2→b1→a1→b2→a3：目標值 18"}
+```
+</script></div>
+<footer><span class="src">出處：Wiki › <a href="../wiki.html#concepts/two-agent-scheduling" target="wiki">雙代理人排程（Two-agent scheduling）</a></span><span class="no">4 / 10</span></footer>
+</section>
+<section class="slide" data-kind="result" data-wiki="sources/tswj2014,algorithms/branch-and-bound,algorithms/simulated-annealing">
+<header><span class="kind">主要結果</span><h2>實驗結果</h2></header>
+<div class="body"><script type="text/markdown">
+- 分支定界可解到 24 個工作，最耗時的一組平均 47.37 秒
+- 模擬退火的平均誤差，作者表示都小於 1%
+- 工作數是 100、200 時，$SA_1$ 的表現優於 $SA_2$，作者建議工作數多時用 $SA_1$
+- 越重視 $AG_2$ 的比例、或交期越寬鬆，分支定界越好解
+</script></div>
+<footer><span class="src">出處：Wiki › <a href="../wiki.html#sources/tswj2014" target="wiki">TSWJ2014｜雙代理人單機排程</a> · <a href="../wiki.html#algorithms/branch-and-bound" target="wiki">Branch-and-bound（分支定界法）</a> · <a href="../wiki.html#algorithms/simulated-annealing" target="wiki">Simulated annealing（模擬退火）</a></span><span class="no">5 / 10</span></footer>
+</section>
+<section class="slide" data-kind="method" data-wiki="algorithms/branch-and-bound">
+<header><span class="kind">方法</span><h2>方法一：分支定界法（求最佳解）</h2></header>
+<div class="body"><script type="text/markdown">
+把所有順序想成一棵樹，提早剪掉不可能更好的分支：
+
+1. **支配性質**：這樣排一定不會比較好
+2. **可行性**：這樣排下去 $AG_2$ 一定會延遲
+3. **下界**：這個分支最好也只能這樣，已經不比目前最好的解好
+
+例：前兩個位置排 a1、a3，b1 最快也要到 12 才完成，超過交期 6，整枝剪掉。
+</script></div>
+<footer><span class="src">出處：Wiki › <a href="../wiki.html#algorithms/branch-and-bound" target="wiki">Branch-and-bound（分支定界法）</a></span><span class="no">6 / 10</span></footer>
+</section>
+<section class="slide" data-kind="method" data-wiki="algorithms/simulated-annealing">
+<header><span class="kind">方法</span><h2>方法二：模擬退火（求近似解）</h2></header>
+<div class="body"><script type="text/markdown">
+- 從 $AG_2$ 依交期、再 $AG_1$ 依加工時間的順序出發
+- 每次隨機對調兩個工作；變好就接受，變差也有機率接受，機率逐漸降低
+- 執行 $400n$ 次迭代
+- $SA_1$：不可行的鄰近解重新產生；$SA_2$：把 $AG_2$ 的延遲加進目標當懲罰
+</script></div>
+<footer><span class="src">出處：Wiki › <a href="../wiki.html#algorithms/simulated-annealing" target="wiki">Simulated annealing（模擬退火）</a></span><span class="no">7 / 10</span></footer>
+</section>
+<section class="slide" data-kind="caveat" data-wiki="sources/tswj2014">
+<header><span class="kind">注意</span><h2>注意事項</h2></header>
+<div class="body"><script type="text/markdown">
+這篇原文有幾處前後不一，Wiki 都標為「待確認」：
+
+- 實驗參數 $P$ 一處說是 $AG_2$ 的比例、一處說是 $AG_1$ 的比例
+- 內文說誤差都小於 1%，但 Table 5 有一組是 1.05%
+- 內文說執行時間都小於 1 秒，Table 6 有幾組超過
+</script></div>
+<footer><span class="src">出處：Wiki › <a href="../wiki.html#sources/tswj2014" target="wiki">TSWJ2014｜雙代理人單機排程</a></span><span class="no">8 / 10</span></footer>
+</section>
+<section class="slide" data-kind="recap" data-wiki="sources/tswj2014,concepts/two-agent-scheduling">
+<header><span class="kind">回顧</span><h2>回顧</h2></header>
+<div class="body"><script type="text/markdown">
+- 雙代理人排程：在滿足一方要求的前提下，讓另一方的目標最好
+- 難題的兩條路：能算就用分支定界求最佳，太大就用模擬退火求近似
+- 它與 relocation problem 沒有直接關係，共通點是面對 NP-hard 時的思路
+</script></div>
+<footer><span class="src">出處：Wiki › <a href="../wiki.html#sources/tswj2014" target="wiki">TSWJ2014｜雙代理人單機排程</a> · <a href="../wiki.html#concepts/two-agent-scheduling" target="wiki">雙代理人排程（Two-agent scheduling）</a></span><span class="no">9 / 10</span></footer>
+</section>
+<section class="slide" data-kind="further" data-wiki="further-reading/tswj2014">
+<header><span class="kind">延伸閱讀</span><h2>延伸閱讀</h2></header>
+<div class="body"><script type="text/markdown">
+> 以下為 Wiki 以外的資料，依書目與摘要推薦，未讀全文。
+
+**Scheduling Problems with Two Competing Agents**  
+Agnetis, A.; Mirchandani, P. B.; Pacciarelli, D.; Pacifici, A.（2004）．*Operations Research*．[doi:10.1287/opre.1030.0092](https://doi.org/10.1287/opre.1030.0092)  
+〔奠基文獻〕TSWJ2014 稱 Agnetis 等人與 Baker 與 Smith 是把多代理人問題引入排程領域的先驅 [TSWJ2014 §1]；想從頭看雙代理人模型，先讀這篇（依書目，未讀全文）。
+
+**A Multiple-Criterion Model for Machine Scheduling**  
+Baker, K. R.; Smith, J. C.（2003）．*Journal of Scheduling*．[doi:10.1023/a:1022231419049](https://doi.org/10.1023/a:1022231419049)  
+〔奠基文獻〕同上，與上一篇一起讀可以看到兩個團隊各自怎麼定義問題；原文說它證明了混合式目標是 NP-hard [TSWJ2014 §1]（依書目，未讀全文）。
+
+**Competitive Two-Agent Scheduling and Its Applications**  
+Leung, J. Y.-T.; Pinedo, M.; Wan, G.（2010）．*Operations Research*．[doi:10.1287/opre.1090.0744](https://doi.org/10.1287/opre.1090.0744)  
+〔後續推廣〕TSWJ2014 說這篇把 Agnetis 等人的單機問題推廣到多台相同機器 [TSWJ2014 §1]；想知道問題放大之後怎麼處理，可以接著讀（依書目，未讀全文）。
+
+</script></div>
+<footer><span class="src">出處：Wiki › <a href="../wiki.html#further-reading/tswj2014" target="wiki">延伸閱讀｜雙代理人單機排程</a></span><span class="no">10 / 10</span></footer>
+</section>
+</div>
+<nav id="bar"><a href="index.html" title="回簡報入口">☰</a><button id="prev" aria-label="上一張">‹</button><div id="progress"><i></i></div><button id="next" aria-label="下一張">›</button></nav>
+<script src="assets/render.js"></script>
+<script src="assets/deck.js"></script>
+</body>
+</html>

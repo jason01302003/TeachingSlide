@@ -1,0 +1,7 @@
+檢查點 C3 | tswj2014 | 2026-11-16 17:49:05
+結果：通過（錯誤 0、警告 0）
+
+[資訊] 10.1287/opre.1030.0092 → Crossref：Scheduling Problems with Two Competing Agents / Agnetis, Mirchandani, Pacciarelli, Pacifici / Operations Research / 2004（標題相似度 1.00）
+[資訊] 10.1023/a:1022231419049 → Crossref：A Multiple-Criterion Model for Machine Scheduling / Baker, Cole Smith / Journal of Scheduling / 2003（標題相似度 1.00）
+[資訊] 10.1287/opre.1090.0744 → Crossref：Competitive Two-Agent Scheduling and Its Applications / Leung, Pinedo, Wan / Operations Research / 2010（標題相似度 1.00）
+[資訊] tswj2014：3 篇

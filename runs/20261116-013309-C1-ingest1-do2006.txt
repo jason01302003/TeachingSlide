@@ -1,0 +1,10 @@
+檢查點 C1 | ingest1-do2006 | 2026-11-16 01:33:09
+結果：不通過（錯誤 5、警告 0）
+
+[錯誤] comparisons/papers-at-a-glance: 連結 [[sources/do2006\]] 指向不存在的頁面
+[錯誤] algorithms/rounding-and-splitting: 這段沒有來源標註也沒有標記：「**第一步：放寬問題的貪婪解（Greedy Algorithm 1、2）**…」
+[錯誤] comparisons/complexity-table: 這段沒有來源標註也沒有標記：「每一列是一個問題版本。「結果」欄的意思：多項式時間＝有快速的精確解法；NP-…」
+[錯誤] concepts/np-hardness: 這段沒有來源標註也沒有標記：「完整列表見 [[comparisons/complexity-table]]…」
+[錯誤] sources/do2006: 這段沒有來源標註也沒有標記：「$$\Omega_t(\sigma) = v_0 + \sum_{C_i(\…」
+[資訊] 非來源內容的標記數量：（推論） 2、（自編例子 11、（白話說明） 10、待確認 4
+[資訊] 共 14 頁：algorithm 1、comparison 2、concept 6、overview 2、source 1、導覽 2
