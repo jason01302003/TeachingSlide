@@ -1,0 +1,43 @@
+/* 固定風格的單一來源（CLAUDE.md 第 7.1 節）：色票、字體與共用元件。
+   簡報、簡報入口與 wiki.html 都從這份檔案取得；其他樣式檔不可再定義顏色或字體。 */
+:root {
+  --paper: #f7f5ef; --card: #ffffff; --ink: #1c2530; --muted: #5b6673; --line: #dcd8cc;
+  --accent: #0f766e; --accent-soft: #d9efec; --warn: #b45309; --warn-soft: #fbeedb;
+  --font: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", system-ui, sans-serif;
+  --mono: Consolas, "Cascadia Mono", monospace;
+  /* 各頁面可以在自己的容器內覆寫這三個字級 */
+  --cite-size: .7em; --table-size: .9em; --caption-size: .8em;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --paper: #12171d; --card: #1a212a; --ink: #e8ecf1; --muted: #9aa6b4; --line: #2e3945;
+          --accent: #5eead4; --accent-soft: #123b38; --warn: #fbbf24; --warn-soft: #3b2a0c; }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--paper); color: var(--ink); font-family: var(--font); }
+a { color: var(--accent); }
+
+/* ---------- 共用元件 ---------- */
+blockquote { margin: .6em 0; padding: .5em 1em; border-left: 5px solid var(--accent); background: var(--accent-soft); border-radius: 0 8px 8px 0; }
+blockquote.todo { border-left-color: var(--warn); background: var(--warn-soft); }
+blockquote.todo strong { color: var(--warn); }
+blockquote p { margin: .2em 0; }
+code { font-family: var(--mono); font-size: .9em; background: var(--accent-soft); padding: .05em .35em; border-radius: 5px; }
+pre { background: var(--accent-soft); padding: .8em 1em; border-radius: 8px; overflow: auto; }
+pre code { background: none; padding: 0; }
+.cite { font-size: var(--cite-size); font-weight: 600; color: var(--muted); border: 1px solid var(--line); border-radius: 999px;
+        padding: .1em .6em; margin-left: .25em; white-space: nowrap; text-decoration: none; vertical-align: .15em; }
+a.cite:hover { border-color: var(--accent); color: var(--accent); }
+.tablewrap { overflow-x: auto; margin: .5em 0; }
+table { border-collapse: collapse; width: 100%; font-size: var(--table-size); }
+th, td { border-bottom: 1px solid var(--line); padding: .38em .7em; text-align: left; vertical-align: top; }
+th { color: var(--muted); font-weight: 700; border-bottom-width: 2px; white-space: nowrap; }
+figure { margin: .4em 0; }
+figcaption { font-size: var(--caption-size); color: var(--muted); text-align: center; margin-top: .2em; }
+svg.diagram { width: 100%; height: auto; display: block; font-family: var(--font); }
+svg.diagram .grid { stroke: var(--line); stroke-width: 1; }
+svg.diagram .tick { fill: var(--muted); font-size: 14px; text-anchor: middle; }
+svg.diagram .tick.strong { fill: var(--ink); font-weight: 700; font-size: 15px; }
+svg.diagram .rowlabel { fill: var(--ink); font-size: 16px; font-weight: 700; text-anchor: end; }
+svg.diagram .barlabel { fill: #fff; font-size: 15px; font-weight: 700; text-anchor: middle; }
+svg.diagram .level { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; }
+svg.diagram .dot { fill: var(--ink); }

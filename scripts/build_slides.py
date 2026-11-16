@@ -63,6 +63,7 @@ def build(deck: str) -> str:
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(title)}</title>
+<link rel="stylesheet" href="assets/base.css">
 <link rel="stylesheet" href="assets/deck.css">
 {CDN}
 </head>
@@ -94,6 +95,7 @@ def build_index(decks: list[str]) -> str:
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Relocation Problem 是什麼？五篇排程論文導讀</title>
+<link rel="stylesheet" href="assets/base.css">
 <link rel="stylesheet" href="assets/deck.css">
 </head>
 <body class="hub">

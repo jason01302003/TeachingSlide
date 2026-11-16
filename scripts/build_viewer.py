@@ -13,11 +13,7 @@ TYPE_LABEL = [("overview", "總覽"), ("source", "來源（論文）"), ("concep
               ("comparison", "跨論文比較"), ("query", "查詢回答與簡報稿"), ("external", "延伸閱讀（外部資料）")]
 
 CSS = """
-:root{--paper:#f7f5ef;--card:#fff;--ink:#1c2530;--muted:#5b6673;--line:#dcd8cc;--accent:#0f766e;--accent-soft:#d9efec;--warn:#b45309;--warn-soft:#fbeedb;
---font:"Noto Sans TC","Microsoft JhengHei","PingFang TC",system-ui,sans-serif}
-@media (prefers-color-scheme:dark){:root{--paper:#12171d;--card:#1a212a;--ink:#e8ecf1;--muted:#9aa6b4;--line:#2e3945;--accent:#5eead4;--accent-soft:#123b38;--warn:#fbbf24;--warn-soft:#3b2a0c}}
-*{box-sizing:border-box}html,body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font)}
-a{color:var(--accent)}
+/* wiki.html 專用的版面；色票、字體與共用元件由 slides/assets/base.css 提供（見 CLAUDE.md 第 7.1 節） */
 #app{display:grid;grid-template-columns:300px minmax(0,1fr);min-height:100vh}
 aside{border-right:1px solid var(--line);padding:20px 16px;position:sticky;top:0;height:100vh;overflow:auto}
 aside h1{font-size:19px;margin:0 0 4px}aside .sub{font-size:13px;color:var(--muted);margin:0 0 14px;line-height:1.6}
@@ -32,21 +28,12 @@ main{padding:36px clamp(16px,5vw,64px) 80px;max-width:940px}
 .pill.type{background:var(--accent-soft);color:var(--accent);border-color:transparent;font-weight:700}
 .pill.draft{color:var(--warn);border-color:var(--warn)}
 main h1{font-size:clamp(26px,4vw,36px);margin:.2em 0 .6em;text-wrap:balance}
-article{font-size:17px;line-height:1.8}article h1{display:none}
+article{--cite-size:.72em;--table-size:.92em;--caption-size:.85em;font-size:17px;line-height:1.8}article h1{display:none}
 article h2{font-size:22px;margin:1.7em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}article h3{font-size:18px;margin:1.3em 0 .4em}
 article li{margin:.25em 0}
-blockquote{margin:.8em 0;padding:.5em 1em;border-left:5px solid var(--accent);background:var(--accent-soft);border-radius:0 8px 8px 0}
-blockquote.todo{border-left-color:var(--warn);background:var(--warn-soft)}blockquote.todo strong{color:var(--warn)}blockquote p{margin:.2em 0}
-code{font-family:Consolas,"Cascadia Mono",monospace;font-size:.9em;background:var(--accent-soft);padding:.05em .35em;border-radius:5px}
-pre{background:var(--accent-soft);padding:.8em 1em;border-radius:8px;overflow:auto}pre code{background:none;padding:0}
-.cite{font-size:.72em;font-weight:600;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:.05em .6em;margin-left:.2em;white-space:nowrap;text-decoration:none}
-a.cite:hover{border-color:var(--accent);color:var(--accent)}
-.tablewrap{overflow-x:auto;margin:.8em 0}table{border-collapse:collapse;width:100%;font-size:.92em}
-th,td{border-bottom:1px solid var(--line);padding:.45em .7em;text-align:left;vertical-align:top}th{color:var(--muted);border-bottom-width:2px;white-space:nowrap}
-figure{margin:1em 0}figcaption{font-size:.85em;color:var(--muted);text-align:center}
-svg.diagram{width:100%;height:auto;display:block;font-family:var(--font)}svg.diagram .grid{stroke:var(--line)}svg.diagram .tick{fill:var(--muted);font-size:14px;text-anchor:middle}
-svg.diagram .tick.strong{fill:var(--ink);font-weight:700}svg.diagram .rowlabel{fill:var(--ink);font-size:16px;font-weight:700;text-anchor:end}
-svg.diagram .barlabel{fill:#fff;font-size:15px;font-weight:700;text-anchor:middle}svg.diagram .level{fill:none;stroke:var(--ink);stroke-width:3}svg.diagram .dot{fill:var(--ink)}
+blockquote{margin:.8em 0}
+.tablewrap{margin:.8em 0}
+figure{margin:1em 0}
 .back{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);font-size:14.5px;color:var(--muted)}
 .back a{margin-right:12px;white-space:nowrap}
 .slidemeta{font-size:13px;color:var(--muted);margin:-.3em 0 .6em}
@@ -114,6 +101,7 @@ def main() -> None:
             if target in pages and target != pid and pid not in data["backlinks"].setdefault(target, []):
                 data["backlinks"][target].append(pid)
     render_js = (SLIDES / "assets" / "render.js").read_text(encoding="utf-8")
+    base_css = (SLIDES / "assets" / "base.css").read_text(encoding="utf-8")
     payload = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
     html = f"""<!doctype html>
 <html lang="zh-Hant">
@@ -124,6 +112,9 @@ def main() -> None:
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<style>
+{base_css}
+</style>
 <style>{CSS}</style>
 </head>
 <body>

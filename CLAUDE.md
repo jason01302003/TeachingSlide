@@ -205,7 +205,12 @@ wiki:: [[sources/do2006]], [[concepts/relocation-problem]]
 
 簡報、簡報入口頁與 `wiki.html` 一律使用下列風格。要改風格，必須先由使用者提出，並在 `wiki/log.md` 記一筆 `schema`。
 
-**單一來源**：樣式只寫在 `slides/assets/deck.css`，圖表顏色只寫在 `slides/assets/render.js` 的 `PALETTE`；各頁面不可另外寫私有的顏色或字體。`wiki.html` 由 `scripts/build_viewer.py` 內嵌同一組色票。
+**單一來源**：
+
+- 色票、字體與共用元件（引用區塊、程式碼、表格、圖表、出處標籤）只寫在 `slides/assets/base.css`。簡報與入口頁先連結 `base.css`、再連結 `deck.css`；`wiki.html` 由 `scripts/build_viewer.py` 把 `base.css` 逐字內嵌進去。
+- `deck.css` 與 `build_viewer.py` 的 CSS 只放版面（尺寸、排版、位置），不可出現色碼或字體名稱；各頁面可以用 `--cite-size`、`--table-size`、`--caption-size` 三個變數調整字級。
+- 圖表色盤只寫在 `slides/assets/render.js` 的 `PALETTE`。
+- 改了 `base.css` 之後，必須重新執行 `build_slides.py all` 與 `build_viewer.py`，再執行 `scripts/check_style.py`（檢查點 C5）；C5 會抓到違規的色碼與字體、`wiki.html` 沒有內嵌最新的 `base.css`、簡報沒有連結 `base.css`，以及簡報內的 `<style>` 與 `style=""`。
 
 **色票**（以 CSS 變數表示）
 
